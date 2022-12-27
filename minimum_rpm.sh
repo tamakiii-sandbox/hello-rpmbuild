@@ -1,13 +1,13 @@
 #!/bin/bash -x
 
-BUILDDIR=$(pwd)/build/minbuild
-mkdir -p $BUILDDIR/SOURCES
-
-CMD=minimum
-cat <<EOF > $BUILDDIR/SOURCES/$CMD
-#!/bin/bash
-echo "Minimum!"
-EOF
+BUILDDIR=$(pwd)/dist/minbuild
+# mkdir -p $BUILDDIR/SOURCES
+#
+# CMD=minimum
+# cat <<EOF > $BUILDDIR/SOURCES/$CMD
+# #!/bin/bash
+# echo "Minimum!"
+# EOF
 
 SPEC=minimum.spec
 cat <<EOF > ./$SPEC
