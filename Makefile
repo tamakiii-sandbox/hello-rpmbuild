@@ -4,20 +4,17 @@ help:
 	@cat $(firstword $(MAKEFILE_LIST))
 
 build: \
-	dist/minbuild/SOURCES/minimum \
-	dist/minbuild/minimum.spec
-	rpmbuild --define "_topdir $$(realpath dist/minbuild)" -bb ./dist/minbuild/minimum.spec
+	dist/SOURCES/minimum \
+	dist/minimum.spec
+	rpmbuild --define "_topdir $$(realpath dist)" -bb ./dist/minimum.spec
 
-dist/minbuild/SOURCES/minimum: dist/minbuild/SOURCES
-	cp src/minimum $@
+dist/SOURCES/minimum: dist/SOURCES | src/minimum
+	cp $| $@
 
-dist/minbuild/minimum.spec: dist/minbuild
-	cp src/minimum.spec $@
+dist/minimum.spec: dist | src/minimum.spec
+	cp $| $@
 
-dist/minbuild/SOURCES: dist/minbuild
-	mkdir $@
-
-dist/minbuild: dist
+dist/SOURCES: dist
 	mkdir $@
 
 dist:
