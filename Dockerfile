@@ -7,5 +7,6 @@ RUN yum update -y && \
       make \
       less \
       yum-utils \
+      rpm-build \
       && \
     yum clean all
