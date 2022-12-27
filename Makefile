@@ -1,15 +1,18 @@
 .PHONY: help build clean
 
-BUILDDIR := build/minbuild
-
 help:
 	@cat $(firstword $(MAKEFILE_LIST))
 
-build: dist/minbuild/SOURCES/minimum
-	bash minimum_rpm.sh
+build: \
+	dist/minbuild/SOURCES/minimum \
+	dist/minbuild/minimum.spec
+	rpmbuild --define "_topdir $$(realpath dist/minbuild)" -bb ./dist/minbuild/minimum.spec
 
 dist/minbuild/SOURCES/minimum: dist/minbuild/SOURCES
 	cp src/minimum $@
+
+dist/minbuild/minimum.spec: dist/minbuild
+	cp src/minimum.spec $@
 
 dist/minbuild/SOURCES: dist/minbuild
 	mkdir $@
@@ -21,4 +24,4 @@ dist:
 	mkdir $@
 
 clean:
-	rm -rf build
+	rm -rf dist

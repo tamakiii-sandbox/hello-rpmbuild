@@ -1,16 +1,3 @@
-#!/bin/bash -x
-
-BUILDDIR=$(pwd)/dist/minbuild
-# mkdir -p $BUILDDIR/SOURCES
-#
-# CMD=minimum
-# cat <<EOF > $BUILDDIR/SOURCES/$CMD
-# #!/bin/bash
-# echo "Minimum!"
-# EOF
-
-SPEC=minimum.spec
-cat <<EOF > ./$SPEC
 Name: minimum
 Version: 1
 Release: 1%{?dist}
@@ -28,6 +15,3 @@ install -p -m 755 %{SOURCE0} %{buildroot}/%{_bindir}
 
 %files
 %{_bindir}/minimum
-EOF
-
-rpmbuild --define "_topdir ${BUILDDIR}" -bb ./$SPEC
